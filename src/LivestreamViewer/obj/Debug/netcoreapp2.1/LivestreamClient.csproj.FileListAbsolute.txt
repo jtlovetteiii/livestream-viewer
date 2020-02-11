@@ -1,0 +1,15 @@
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\bin\Debug\netcoreapp2.1\appsettings.json
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\bin\Debug\netcoreapp2.1\log4net.config
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\bin\Debug\netcoreapp2.1\video\Offline.mp4
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\bin\Debug\netcoreapp2.1\video\OffAir.mp4
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\bin\Debug\netcoreapp2.1\LivestreamClient.deps.json
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\bin\Debug\netcoreapp2.1\LivestreamClient.runtimeconfig.json
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\bin\Debug\netcoreapp2.1\LivestreamClient.runtimeconfig.dev.json
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\bin\Debug\netcoreapp2.1\LivestreamClient.dll
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\bin\Debug\netcoreapp2.1\LivestreamClient.pdb
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\obj\Debug\netcoreapp2.1\LivestreamClient.csprojAssemblyReference.cache
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\obj\Debug\netcoreapp2.1\LivestreamClient.csproj.CoreCompileInputs.cache
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\obj\Debug\netcoreapp2.1\LivestreamClient.AssemblyInfoInputs.cache
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\obj\Debug\netcoreapp2.1\LivestreamClient.AssemblyInfo.cs
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\obj\Debug\netcoreapp2.1\LivestreamClient.dll
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\obj\Debug\netcoreapp2.1\LivestreamClient.pdb

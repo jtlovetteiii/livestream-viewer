@@ -1,0 +1,14 @@
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\bin\Debug\netcoreapp2.1\CBCWilmington.Media.Livestream.Client.deps.json
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\bin\Debug\netcoreapp2.1\CBCWilmington.Media.Livestream.Client.runtimeconfig.json
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\bin\Debug\netcoreapp2.1\CBCWilmington.Media.Livestream.Client.runtimeconfig.dev.json
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\bin\Debug\netcoreapp2.1\CBCWilmington.Media.Livestream.Client.dll
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\obj\Debug\netcoreapp2.1\CBCWilmington.Media.Livestream.Client.csproj.CoreCompileInputs.cache
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\obj\Debug\netcoreapp2.1\CBCWilmington.Media.Livestream.Client.AssemblyInfoInputs.cache
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\obj\Debug\netcoreapp2.1\CBCWilmington.Media.Livestream.Client.AssemblyInfo.cs
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\bin\Debug\netcoreapp2.1\log4net.config
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\bin\Debug\netcoreapp2.1\video\offline.mp4
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\bin\Debug\netcoreapp2.1\appsettings.json
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\bin\Debug\netcoreapp2.1\CBCWilmington.Media.Livestream.Client.pdb
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\obj\Debug\netcoreapp2.1\CBCWilmington.Media.Livestream.Client.dll
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\obj\Debug\netcoreapp2.1\CBCWilmington.Media.Livestream.Client.pdb
+C:\Users\Thomas\OneDrive\Projects\CBC Media\Streaming\LivestreamClient\code\LivestreamClient\CBCWilmington.Media.Livestream.Client\bin\Debug\netcoreapp2.1\video\OffAir.mp4
