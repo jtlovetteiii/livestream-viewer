@@ -29,6 +29,7 @@ namespace LivestreamViewer
      *  
      * [Build (Windows)]
      *  dotnet publish --runtime win-x86 --self-contained
+     *  (https://docs.microsoft.com/en-us/dotnet/core/rid-catalog)
      *  Copy \LivestreamViewer\bin\Debug\netcoreapp2.3\win-x86\publish to the target computer.
      * 
      * [Prerequisites (Windows)]

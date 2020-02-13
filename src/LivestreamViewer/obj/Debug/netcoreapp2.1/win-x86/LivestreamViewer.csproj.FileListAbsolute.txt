@@ -1,0 +1,17 @@
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\win-x86\hostpolicy.dll
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\win-x86\hostfxr.dll
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\win-x86\LivestreamViewer.exe
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\win-x86\appsettings.json
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\win-x86\log4net.config
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\win-x86\video\Offline.mp4
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\win-x86\video\OffAir.mp4
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\win-x86\LivestreamViewer.deps.json
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\win-x86\LivestreamViewer.runtimeconfig.json
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\win-x86\LivestreamViewer.runtimeconfig.dev.json
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\win-x86\LivestreamViewer.dll
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\win-x86\LivestreamViewer.pdb
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\win-x86\LivestreamViewer.csprojAssemblyReference.cache
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\win-x86\LivestreamViewer.AssemblyInfoInputs.cache
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\win-x86\LivestreamViewer.AssemblyInfo.cs
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\win-x86\LivestreamViewer.dll
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\win-x86\LivestreamViewer.pdb

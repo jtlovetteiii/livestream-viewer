@@ -1,0 +1,17 @@
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\linux-arm\libhostpolicy.so
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\linux-arm\libhostfxr.so
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\linux-arm\LivestreamViewer
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\linux-arm\appsettings.json
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\linux-arm\log4net.config
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\linux-arm\video\Offline.mp4
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\linux-arm\video\OffAir.mp4
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\linux-arm\LivestreamViewer.deps.json
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\linux-arm\LivestreamViewer.runtimeconfig.json
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\linux-arm\LivestreamViewer.runtimeconfig.dev.json
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\linux-arm\LivestreamViewer.dll
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\linux-arm\LivestreamViewer.pdb
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\linux-arm\LivestreamViewer.csprojAssemblyReference.cache
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\linux-arm\LivestreamViewer.AssemblyInfoInputs.cache
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\linux-arm\LivestreamViewer.AssemblyInfo.cs
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\linux-arm\LivestreamViewer.dll
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\linux-arm\LivestreamViewer.pdb
