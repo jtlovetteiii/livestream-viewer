@@ -113,7 +113,7 @@ The path to the folder on disk where FFMPEG compiled executables reside. If prov
 1. ffmpeg.exe
 2. ffplay.exe
 
-If not provided, then the application will assume that both FFMPEG and FFPLAY can be invoked from the shell.
+If not provided, then the application will assume that both FFMPEG and FFPLAY can be invoked from the shell. When running on Windows, backslashes must be doubled (e.g. C:\\Documents\\FFMPEG instead of C:\Documents\FFMPEG).
 
 *Default value: None.*
 
@@ -123,7 +123,7 @@ The URL for the livestream, including stream key (if applicable). This value is 
 *Default value: None.*
 
 ## VideoPath
-The path to a directory that contains static video files used when a livestream is not actively being viewed.
+The path to a directory that contains static video files used when a livestream is not actively being viewed. When running on Windows, backslashes must be doubled (e.g. C:\\Documents\\Videos instead of C:\Documents\Videos).
 
 *Default value: A folder called `video` in the same directory as the executable.*
 
