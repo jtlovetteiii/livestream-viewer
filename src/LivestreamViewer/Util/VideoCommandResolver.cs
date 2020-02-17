@@ -10,6 +10,9 @@ namespace LivestreamViewer
     /// </summary>
     public class VideoCommandResolver
     {
+        private const int TestModeWidth = 640;
+        private const int TestModeHeight = 480;
+
         private const string OmxPlayerName = "omxplayer";
         private const string FFMPEGPlayerName = "ffmpeg";
         private const string FFPlayPlayerName = "ffplay";
@@ -67,8 +70,8 @@ namespace LivestreamViewer
             {
                 case ViewerState.Livestream:
                     return _explicitModeEnabled
-                                ? GetFFPLAYArgs(_config.LivestreamUrl, false)
-                                : GetOmxplayerArgs(_config.LivestreamUrl, false);
+                                ? GetFFPLAYArgs(_config.LivestreamUrl, _config.TestModeEnabled, false)
+                                : GetOmxplayerArgs(_config.LivestreamUrl, _config.TestModeEnabled, false);
                 case ViewerState.Unset:
                     throw new Exception($"Invalid viewer state: [{Enum.GetName(typeof(ViewerState), state)}].");
                 default:
@@ -79,18 +82,19 @@ namespace LivestreamViewer
                     // NOTE: Use forward slashes for greater platform compatibility.
                     var videoPath = $"{_config.VideoPath}/{Enum.GetName(typeof(ViewerState), state)}.{_config.VideoExtension}";
                     return _explicitModeEnabled
-                                ? GetFFPLAYArgs(videoPath, true)
-                                : GetOmxplayerArgs(videoPath, true);
+                                ? GetFFPLAYArgs(videoPath, _config.TestModeEnabled, true)
+                                : GetOmxplayerArgs(videoPath, _config.TestModeEnabled, true);
             }
         }
 
-        private string GetFFPLAYArgs(string url, bool loop)
+        private string GetFFPLAYArgs(string url, bool useTestMode, bool loop)
         {
-            // Always play in full-screen mode (fs).
+            // Always play in full-screen mode (fs) unless in test mode.
             // Optionally loop the video.
             // Example: ffplay "offline.mp4" -loop 0 -fs
             // Note: This doesn't support quote chars right now because, in shell mode, we have to surround the whole command with quotes.
-            var ffplayArgs = $"{url} -fs";
+            var scaleArgs = useTestMode ? $"-x {TestModeWidth} -y {TestModeHeight}" : "-fs";
+            var ffplayArgs = $"{url} {scaleArgs}";
             if (loop)
             {
                 ffplayArgs += " -loop 0";
@@ -98,14 +102,18 @@ namespace LivestreamViewer
             return ffplayArgs;
         }
 
-        private string GetOmxplayerArgs(string url, bool loop)
+        private string GetOmxplayerArgs(string url, bool useTestMode, bool loop)
         {
-            // Omxplayer auto-plays in full-screen.
+            // Omxplayer auto-plays in full-screen (override for test mode).
             // Optionally loop the video.
             var omxArgs = $"\"{url}\"";
             if (loop)
             {
                 omxArgs += " --loop";
+            }
+            if(useTestMode)
+            {
+                omxArgs += $" --win 0,0,{TestModeWidth},{TestModeHeight}";
             }
             return omxArgs;
         }

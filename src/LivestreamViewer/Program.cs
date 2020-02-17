@@ -55,7 +55,7 @@ namespace LivestreamViewer
             InitLogger();
 
             Log.Info("Loading configuration.");
-            var config = LivestreamClientConfig.FromLocalFile();
+            var config = LivestreamClientConfig.FromLocalFile(args);
             config.EnsureValid();
             Log.Info($"Configuration loaded: {config}");
 

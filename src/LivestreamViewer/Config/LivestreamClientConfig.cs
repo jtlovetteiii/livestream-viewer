@@ -9,6 +9,8 @@ namespace LivestreamViewer.Config
     /// </summary>
     public class LivestreamClientConfig
     {
+        private const string TestModeSwitch = "--test";
+
         private const string DefaultVideoPath = "video";
         private const string DefaultVideoExtension = "mp4";
         private const string DefaultInternetTestUrl = "https://google.com";
@@ -110,7 +112,7 @@ namespace LivestreamViewer.Config
         /// Generates a new LivestreamClientConfig instance using values
         /// in a local appsettings.json file.
         /// </summary>
-        public static LivestreamClientConfig FromLocalFile()
+        public static LivestreamClientConfig FromLocalFile(string[] args)
         {
             IConfiguration config = new ConfigurationBuilder()
               .AddJsonFile("appsettings.json", true, true)
@@ -132,8 +134,20 @@ namespace LivestreamViewer.Config
             {
                 appConfig.HealthCheckGracePeriod = healthCheckGracePeriod;
             }
+
+            // Special handling for incoming arguments.
+            if (args.Contains(TestModeSwitch))
+            {
+                appConfig.TestModeEnabled = true;
+            }
             return appConfig;
         }
+
+        /// <summary>
+        /// Indicates whether the application will execute in test mode.
+        /// Currently, this merely fixes video playback size.
+        /// </summary>
+        public bool TestModeEnabled { get; private set; }
 
         /// <summary>
         /// Validates the current configuration options, throwing an exception

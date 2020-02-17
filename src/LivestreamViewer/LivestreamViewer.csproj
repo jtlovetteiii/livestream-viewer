@@ -10,10 +10,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="video\**" />
+    <EmbeddedResource Remove="video\**" />
+    <None Remove="video\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="appsettings.json" />
     <None Remove="log4net.config" />
-    <None Remove="video\offair.mp4" />
-    <None Remove="video\offline.mp4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,12 +25,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="log4net.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="video\Offline.mp4">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="video\OffAir.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
