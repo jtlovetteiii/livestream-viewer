@@ -56,10 +56,34 @@ Transitions between videos are not seamless: there is a "gap" between when one v
 ## Lack of Display Guarantee
 As currently implemented, the application has no ability to verify that videos are actually being displayed (largely due to reliance upon external video players). For instance, OMXPLAYER sometimes fails to show live video, instead merely reporting the codec in a terminal display. While rare, this application currently has no mechanism to detect such a scenario, meaning that, until the next transition, the device will likely display either a terminal window or the underlying desktop GUI. Future revisions may handle this situation by testing pixels from the screen buffer or by using alternate video playback technology. For now, it is recommended that this application be at least periodically restarted to ensure that, if a video player ever enters this state, there will at least be some chance of recovery.
 
-# Build
+# Distributions
+Pre-generated builds of the application can be found
 
-# Custom Videos
+# Build
+If you make changes to the application and want to produce your own builds and distributions, start by making edits in your IDE of choice (Visual Studio Community Edition is a great place to start if you're unsure), then follow the below procedure.
+
+Navigate to src\LivestreamViewer, then execute the following command:
+
+`dotnet build LivestreamViewer.csproj`
+
+This will compile the application, placing the binaries in src\LivestreamViewer\bin\Debug\netcoreapp2.1
+
+While in the same folder (src\LivestreamViewer), execute this command to generate a platform-specific deployment package:
+
+`dotnet publish --runtime xxx --self-contained`
+
+Replace "xxx" with a [Runtime Identifier](https://docs.microsoft.com/en-us/dotnet/core/rid-catalog); common values are `win-x86` for 32-bit Windows and `linux-arm` for Raspberry Pi.
+
+*Refer to the [.NET Core publish documentation](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-publish) for information about available options, including "framework-dependent" and "standalone" builds.*
+
+The `dotnet publish` command will generate platform-specific executables (including the .NET Core runtime) in src\LivestreamViewer\bin\Debug\netcoreapp2.1\xxx (where "xxx" is the Runtime Identifier). These files can be deployed to and executed on another computer with or without the .NET Core runtime.
 
 # Configuration and Convention
 
-# Environments
+# Custom Videos
+
+# Examples
+
+## Windows
+
+## Linux
