@@ -57,7 +57,7 @@ Transitions between videos are not seamless: there is a "gap" between when one v
 As currently implemented, the application has no ability to verify that videos are actually being displayed (largely due to reliance upon external video players). For instance, OMXPLAYER sometimes fails to show live video, instead merely reporting the codec in a terminal display. While rare, this application currently has no mechanism to detect such a scenario, meaning that, until the next transition, the device will likely display either a terminal window or the underlying desktop GUI. Future revisions may handle this situation by testing pixels from the screen buffer or by using alternate video playback technology. For now, it is recommended that this application be at least periodically restarted to ensure that, if a video player ever enters this state, there will at least be some chance of recovery.
 
 # Distributions
-Pre-generated builds of the application can be found
+Pre-generated builds of the application for various platforms can be found in the `dist` folder. The latest release can always be found in the `dist\latest` folder.
 
 # Build
 If you make changes to the application and want to produce your own builds and distributions, start by making edits in your IDE of choice (Visual Studio Community Edition is a great place to start if you're unsure), then follow the below procedure.
@@ -78,12 +78,90 @@ Replace "xxx" with a [Runtime Identifier](https://docs.microsoft.com/en-us/dotne
 
 The `dotnet publish` command will generate platform-specific executables (including the .NET Core runtime) in src\LivestreamViewer\bin\Debug\netcoreapp2.1\xxx (where "xxx" is the Runtime Identifier). These files can be deployed to and executed on another computer with or without the .NET Core runtime.
 
-# Configuration and Convention
-
-# Custom Videos
-
-# Examples
+# Prerequisites
+Follow the below steps prior to running a distribution of this application on another computer.
 
 ## Windows
+1. Download FFMPEG: https://ffmpeg.zeranoe.com/builds/
+2. Copy the downloaded files to a folder on the target computer (e.g. C:\ffmpeg).
+3. Ensure that the folder contains the following files:
+  * ffmpeg.exe
+  * ffplay.exe
+  * ffprobe.exe
+
+Run with:
+
+`> LivestreamViewer.exe`
 
 ## Linux
+```
+$ sudo apt-get install omxplayer
+$ sudo apt-get install ffplay
+$ sudo apt-get install libssl-dev
+$ sudo apt-get install libssl1.0.2
+```
+
+Run with:
+
+`$ ./LivestreamViewer`
+
+# Configuration
+This application stores configuration values in a file called `appsettings.json` in the same directory as the executable.
+
+## VideoPlayerPath
+The path to the folder on disk where FFMPEG compiled executables reside. If provided, this folder must contain the following files:
+1. ffmpeg.exe
+2. ffplay.exe
+
+If not provided, then the application will assume that both FFMPEG and FFPLAY can be invoked from the shell.
+
+*Default value: None.*
+
+## LivestreamUrl
+The URL for the livestream, including stream key (if applicable). This value is required.
+
+*Default value: None.*
+
+## VideoPath
+The path to a directory that contains static video files used when a livestream is not actively being viewed.
+
+*Default value: A folder called `video` in the same directory as the executable.*
+
+## VideoExtension
+The extension that static video files will share. When searching for static videos to play (for the Off-Air and Offline states), the application will search the **VideoPath** directory for files with this extension. Do not prefix this value with a '.' character.
+
+*Default value: mp4.*
+
+## InternetTestUrl
+The URL to use during Internet connectivity testing. The URL's relationship to the device's network should be equivalent to that of the livestream URL; for instance, if this device accesses the livestream across the Internet (as opposed to the local network), then this URL should also be an Internet-facing URL. If this device accesses the livestream across the local network, then this URL should be an internal network-facing address. In either case, the URL must accept HTTP GET requests.
+
+*Default value: https://google.com*
+
+## HealthCheckGracePeriod
+The amount of time (in seconds) to stream frames from the livestream during a health check before terminating the test and inspecting the downloaded frames.
+
+*Default value: 30.*
+
+## HealthCheckDelay
+The amount of time (in seconds) to wait between inspections of the livestream's current state.
+
+*Default value: 30.*
+
+# Custom Videos
+This application displays video content based upon the current "state" of the viewer. These states are currently defined as:
+- OffAir
+- Livestream
+- Offline
+
+While the viewer is in the Livestream state, the application will display the livestream as non-looping content. When the viewer transitions to any other state, the application will load a static video *whose name matches the target state* from the configured VideoPath folder. For instance, if VideoPath is `/var/tmp/video` and VideoExtension is `mp4`, then, upon transitioning from Livestream to OffAir, the application assumes that there exists a file on disk at `/var/tmp/video/OffAir.mp4`. 
+
+# Test Mode
+Since videos are displayed in full-screen mode, it can be difficult to diagnose errors without having direct keyboard and mouse access to the computer where this application is running. To that end, the application supports a command-line switch that, if present, will lock video display to a resolution of 640x480. On most display devices, this is sufficient to keep the terminal window visible, where additional error information may be written that is missing from the log files (such as FFMPEG frame capture information).
+
+On Windows:
+
+`LivestreamViewer.exe --test`
+
+On Linux:
+
+`./LivestreamViewer --test`
