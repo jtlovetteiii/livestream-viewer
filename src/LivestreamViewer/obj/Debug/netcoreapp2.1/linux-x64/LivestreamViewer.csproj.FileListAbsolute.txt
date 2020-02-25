@@ -1,0 +1,15 @@
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\linux-x64\libhostpolicy.so
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\linux-x64\libhostfxr.so
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\linux-x64\LivestreamViewer
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\linux-x64\appsettings.json
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\linux-x64\log4net.config
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\linux-x64\LivestreamViewer.deps.json
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\linux-x64\LivestreamViewer.runtimeconfig.json
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\linux-x64\LivestreamViewer.runtimeconfig.dev.json
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\linux-x64\LivestreamViewer.dll
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\linux-x64\LivestreamViewer.pdb
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\linux-x64\LivestreamViewer.csprojAssemblyReference.cache
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\linux-x64\LivestreamViewer.AssemblyInfoInputs.cache
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\linux-x64\LivestreamViewer.AssemblyInfo.cs
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\linux-x64\LivestreamViewer.dll
+C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\linux-x64\LivestreamViewer.pdb
