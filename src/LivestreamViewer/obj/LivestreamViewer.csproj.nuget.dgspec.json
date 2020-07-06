@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Thomas\\OneDrive\\Projects\\livestream-viewer\\src\\LivestreamViewer\\LivestreamViewer.csproj": {}
+    "E:\\OneDrive\\Projects\\livestream-viewer\\src\\LivestreamViewer\\LivestreamViewer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Thomas\\OneDrive\\Projects\\livestream-viewer\\src\\LivestreamViewer\\LivestreamViewer.csproj": {
+    "E:\\OneDrive\\Projects\\livestream-viewer\\src\\LivestreamViewer\\LivestreamViewer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Thomas\\OneDrive\\Projects\\livestream-viewer\\src\\LivestreamViewer\\LivestreamViewer.csproj",
+        "projectUniqueName": "E:\\OneDrive\\Projects\\livestream-viewer\\src\\LivestreamViewer\\LivestreamViewer.csproj",
         "projectName": "LivestreamViewer",
-        "projectPath": "C:\\Users\\Thomas\\OneDrive\\Projects\\livestream-viewer\\src\\LivestreamViewer\\LivestreamViewer.csproj",
+        "projectPath": "E:\\OneDrive\\Projects\\livestream-viewer\\src\\LivestreamViewer\\LivestreamViewer.csproj",
         "packagesPath": "C:\\Users\\Thomas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Thomas\\OneDrive\\Projects\\livestream-viewer\\src\\LivestreamViewer\\obj\\",
+        "outputPath": "E:\\OneDrive\\Projects\\livestream-viewer\\src\\LivestreamViewer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -74,7 +74,7 @@
         }
       },
       "runtimes": {
-        "linux-x64": {
+        "win-x86": {
           "#import": []
         }
       }
