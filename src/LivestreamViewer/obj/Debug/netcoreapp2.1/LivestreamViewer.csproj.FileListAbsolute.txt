@@ -25,3 +25,15 @@ C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Deb
 C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\LivestreamViewer.dll
 C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\LivestreamViewer.pdb
 C:\Users\Thomas\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\LivestreamViewer.csproj.CoreCompileInputs.cache
+E:\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\appsettings.json
+E:\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\log4net.config
+E:\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\LivestreamViewer.deps.json
+E:\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\LivestreamViewer.runtimeconfig.json
+E:\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\LivestreamViewer.runtimeconfig.dev.json
+E:\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\LivestreamViewer.dll
+E:\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\bin\Debug\netcoreapp2.1\LivestreamViewer.pdb
+E:\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\LivestreamViewer.csproj.CoreCompileInputs.cache
+E:\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\LivestreamViewer.AssemblyInfoInputs.cache
+E:\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\LivestreamViewer.AssemblyInfo.cs
+E:\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\LivestreamViewer.dll
+E:\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\LivestreamViewer.pdb

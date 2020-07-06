@@ -1,4 +1,5 @@
 ﻿using LivestreamViewer.Config;
+using LivestreamViewer.Constants;
 using LivestreamViewer.Monitoring;
 using log4net;
 using log4net.Config;
@@ -59,9 +60,36 @@ namespace LivestreamViewer
             config.EnsureValid();
             Log.Info($"Configuration loaded: {config}");
 
+            // Prep dependencies.
+            // TODO: IoC
+            var monitor = new FFMPEGLivestreamMonitor(config);
+            var videoResolver = new VideoCommandResolver(config);
+            var viewer = new LivestreamViewer(config, monitor, videoResolver);
+
+            if (config.ForceSingleInstance)
+            {
+                // Check the current environment and only proceed with this
+                // instance if it's the only one running or there is something
+                // potentially wrong with other instances.
+                var currentState = LivestreamViewerState.FromEnvironment(videoResolver);
+                switch (currentState.Status)
+                {
+                    case LivestreamViewerStatus.Healthy:
+                        Log.Info("Found a running, healthy livestream viewer session. Terminating this instance.");
+                        return;
+                    case LivestreamViewerStatus.Unhealthy:
+                        Log.Info("Found a running, unhealthy livestream viewer session. Terminating the session and proceeding with this instance.");
+                        currentState.CleanEnvironment();
+                        break;
+                    case LivestreamViewerStatus.NotRunning:
+                        Log.Info("Livestream viewer is not already running.");
+                        break;
+                }
+            }
+
             // TODO: Repeat on failure until stopped?
             TokenSource = new CancellationTokenSource();
-            var task = RunClient(config, TokenSource.Token);
+            var task = RunClient(config, viewer, TokenSource.Token);
 
             // Support graceful stop for interactive console.
             // There isn't any cleanup that has to be performed, so we don't
@@ -102,12 +130,9 @@ namespace LivestreamViewer
         /// <summary>
         /// Returns a task that executes the persistent viewer.
         /// </summary>
-        private static async Task RunClient(LivestreamClientConfig config, CancellationToken token)
+        private static async Task RunClient(LivestreamClientConfig config, LivestreamViewer viewer, CancellationToken token)
         {
             Log.Info("Starting Livestream Client.");
-            var monitor = new FFMPEGLivestreamMonitor(config);
-            var videoResolver = new VideoCommandResolver(config);
-            var viewer = new LivestreamViewer(config, monitor, videoResolver);
             await viewer.KeepViewerActive(token);
         }
 

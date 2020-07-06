@@ -13,7 +13,7 @@ namespace LivestreamViewer.Config
 
         private const string DefaultVideoPath = "video";
         private const string DefaultVideoExtension = "mp4";
-        private const string DefaultInternetTestUrl = "https://google.com";
+        private const string DefaultInternetTestUrl = "https://www.google.com";
         private const int DefaultHealthCheckGracePeriod = 30;
         private const int DefaultHealthCheckDelay = 30;
 
@@ -95,6 +95,17 @@ namespace LivestreamViewer.Config
         }
 
         /// <summary>
+        /// If set, ensures that only a single instance of the application
+        /// runs at any given time. During startup, a new instance will check
+        /// to see if there is already a healthy running instance (i.e. an
+        /// instance of this application plus ffplay or omxplayer); if there is,
+        /// then the new instance will terminate. If not, then the new instance
+        /// will terminate any other instances of this application along with
+        /// any running ffmpeg, ffplay, and omxplayer instances before proceeding.
+        /// </summary>
+        public bool ForceSingleInstance { get; set; }
+
+        /// <summary>
         /// The amount of time (in seconds) to wait between inspections of the
         /// live stream's current state.
         /// </summary>
@@ -133,6 +144,10 @@ namespace LivestreamViewer.Config
             if (int.TryParse(config[nameof(HealthCheckGracePeriod)], out var healthCheckGracePeriod))
             {
                 appConfig.HealthCheckGracePeriod = healthCheckGracePeriod;
+            }
+            if(bool.TryParse(config[nameof(ForceSingleInstance)], out var forceSingleInstance))
+            {
+                appConfig.ForceSingleInstance = forceSingleInstance;
             }
 
             // Special handling for incoming arguments.

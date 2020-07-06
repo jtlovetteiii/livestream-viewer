@@ -40,6 +40,24 @@ namespace LivestreamViewer
         }
 
         /// <summary>
+        /// Returns the names of known video player applications that are intended
+        /// to display visible output to the user.
+        /// </summary>
+        public string[] GetKnownVisibleVideoPlayers()
+        {
+            return new string[] { OmxPlayerName, FFPlayPlayerName };
+        }
+
+        /// <summary>
+        /// Returns the names of known applications that manipulate video but
+        /// do not display visible output to the user.
+        /// </summary>
+        public string[] GetKnownVideoProcessors()
+        {
+            return new string[] { FFMPEGPlayerName };
+        }
+
+        /// <summary>
         /// Resolves a shell command for the given viewer state that, when
         /// executed, plays a video appropriate to the given state. 
         /// 
