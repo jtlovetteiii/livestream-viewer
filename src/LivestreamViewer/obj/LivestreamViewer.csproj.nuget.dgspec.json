@@ -74,7 +74,7 @@
         }
       },
       "runtimes": {
-        "win-x86": {
+        "linux-arm": {
           "#import": []
         }
       }

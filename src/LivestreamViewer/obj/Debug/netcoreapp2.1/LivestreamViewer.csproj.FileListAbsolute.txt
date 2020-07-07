@@ -37,3 +37,4 @@ E:\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp
 E:\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\LivestreamViewer.AssemblyInfo.cs
 E:\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\LivestreamViewer.dll
 E:\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\LivestreamViewer.pdb
+E:\OneDrive\Projects\livestream-viewer\src\LivestreamViewer\obj\Debug\netcoreapp2.1\LivestreamViewer.csprojAssemblyReference.cache

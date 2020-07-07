@@ -84,13 +84,17 @@ namespace LivestreamViewer
 
             // Get instances of this application and any player applications.
             var currentProcess = Process.GetCurrentProcess();
+            Log.Info($"Current process: {currentProcess.ProcessName} | {currentProcess.Id}");
             var playerNames = playerResolver.GetKnownVisibleVideoPlayers();
             var processorNames = playerResolver.GetKnownVideoProcessors();
             foreach (var process in Process.GetProcesses())
             {
-                if (process.ProcessName.Equals(currentProcess.ProcessName, StringComparison.OrdinalIgnoreCase) && process.Id != currentProcess.Id)
+                Log.Debug($"Evaluating process: {process.ProcessName} | {process.Id}");
+                // Note: Evaluate this name in reverse since some systems truncate the process name.
+                if (currentProcess.ProcessName.Contains(process.ProcessName, StringComparison.OrdinalIgnoreCase) && process.Id != currentProcess.Id)
                 {
                     environmentInfo.ViewerInstances.Add(process);
+                    Log.Info($"Found viewer process: {process.Id}");
                 }
                 else
                 {
@@ -99,6 +103,7 @@ namespace LivestreamViewer
                         if (process.ProcessName.Contains(playerName, StringComparison.OrdinalIgnoreCase))
                         {
                             environmentInfo.PlayerInstances.Add(process);
+                            Log.Info($"Found player process: {process.Id}");
                             continue;
                         }
                     }
@@ -107,6 +112,7 @@ namespace LivestreamViewer
                         if (process.ProcessName.Contains(processorName, StringComparison.OrdinalIgnoreCase))
                         {
                             environmentInfo.ProcessorInstances.Add(process);
+                            Log.Info($"Found video library process: {process.Id}");
                             continue;
                         }
                     }
