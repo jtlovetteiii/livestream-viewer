@@ -152,10 +152,12 @@ namespace LivestreamViewer
             if (useExplicitMode)
             {
                 _log.Debug($"Configuring {playerName} for launch in explicit executable mode.");
-                var playerPath = Path.Combine(_config.VideoPlayerPath, playerName.EndsWith(".exe") ? playerName : $"{playerName}.exe");
+                var playerPath = Directory.GetFiles(_config.VideoPlayerPath).FirstOrDefault(f => Path.GetFileName(f).Contains(playerName, StringComparison.OrdinalIgnoreCase));
+                //var playerPath = Path.Combine(_config.VideoPlayerPath, playerName.EndsWith(".exe") ? playerName : $"{playerName}.exe");
                 if (!File.Exists(playerPath))
                 {
-                    throw new FileNotFoundException($"Could not find {playerName}.", playerPath);
+                    _log.Error($"Could not find {playerName} at {playerPath}.");
+                    return;
                 }
                 processInfo = new ProcessStartInfo
                 {
