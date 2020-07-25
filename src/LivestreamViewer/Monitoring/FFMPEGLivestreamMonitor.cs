@@ -3,6 +3,7 @@ using log4net;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -96,10 +97,12 @@ namespace LivestreamViewer.Monitoring
                 if (!string.IsNullOrWhiteSpace(_config.VideoPlayerPath))
                 {
                     _log.Debug("Performing livestream test in FFMPEG explicit executable mode.");
-                    var ffmpegPath = Path.Combine(_config.VideoPlayerPath, "ffmpeg.exe");
-                    if(!File.Exists(ffmpegPath))
+                    //var ffmpegPath = Path.Combine(_config.VideoPlayerPath, "ffmpeg.exe");
+                    var ffmpegPath = Directory.GetFiles(_config.VideoPlayerPath).FirstOrDefault(f => Path.GetFileName(f).Contains("ffmpeg", StringComparison.OrdinalIgnoreCase));
+                    if (!File.Exists(ffmpegPath))
                     {
-                        throw new FileNotFoundException("Could not find FFMPEG.", ffmpegPath);
+                        _log.Error($"Could not find FFMPEG at path {ffmpegPath}.");
+                        return;
                     }
                     // Example: ffmpeg -i rtmp://mysite.org/live/mykey -r 1 "C:\rtmp\out%03d.jpg"
                     processInfo = new ProcessStartInfo
