@@ -1,4 +1,5 @@
 ﻿using LivestreamViewer.Config;
+using LivestreamViewer.Util;
 using log4net;
 using System;
 using System.Diagnostics;
@@ -97,7 +98,6 @@ namespace LivestreamViewer.Monitoring
                 if (!string.IsNullOrWhiteSpace(_config.VideoPlayerPath))
                 {
                     _log.Debug("Performing livestream test in FFMPEG explicit executable mode.");
-                    //var ffmpegPath = Path.Combine(_config.VideoPlayerPath, "ffmpeg.exe");
                     var ffmpegPath = Directory.GetFiles(_config.VideoPlayerPath).FirstOrDefault(f => Path.GetFileName(f).Contains("ffmpeg", StringComparison.OrdinalIgnoreCase));
                     if (!File.Exists(ffmpegPath))
                     {
@@ -123,19 +123,37 @@ namespace LivestreamViewer.Monitoring
                         CreateNoWindow = true
                     };
                 }
-                
-                _log.Debug($"Launching FFMPEG with arguments: {processInfo.Arguments}");
-                var proc = Process.Start(processInfo);
-                token.WaitHandle.WaitOne(_config.HealthCheckGracePeriod * 1000);
-                if (!proc.HasExited)
+
+                // Try to connect to the RTMP server with FFMPEG. Observations have shown that
+                // some self-hosted servers exhibit temporary "blips" in connectivity that FFMPEG
+                // simply treats as failures, so we will err on the side of caution and support a retry.
+                // Delaying a transition is better than transitioning when we oughtn't.
+                Retry.WithRetry(() =>
                 {
-                    _log.Debug("Test period elapsed and FFMPEG is still running. Stopping FFMPEG.");
-                    proc.Kill();
-                }
-                else
-                {
-                    _log.Debug("Test period elapsed and FFMPEG has already stopped.");
-                }
+                    // TODO: Is it OK to reference processInfo, _config, and token?
+                    _log.Debug($"Launching FFMPEG with arguments: {processInfo.Arguments}");
+                    var proc = Process.Start(processInfo);
+                    token.WaitHandle.WaitOne(_config.HealthCheckGracePeriod * 1000);
+                    if (!proc.HasExited)
+                    {
+                        // If we haven't exited, then FFMPEG at least worked (it likely connected).
+                        _log.Debug("Test period elapsed and FFMPEG is still running. Stopping FFMPEG.");
+                        proc.Kill();
+                        return true;
+                    }
+                    else if(proc.ExitCode == 0)
+                    {
+                        // If we exited with a code of 0, then FFMPEG probably at least connected to the server.
+                        _log.Debug("Test period elapsed and FFMPEG has already stopped with success code.");
+                        return true;
+                    }
+                    else
+                    {
+                        // If we exited with a non-zero code, then we know something went wrong (possibly a network issue of some kind).
+                        _log.Warn($"Test period elapsed and FFMPEG has already stopped with an error code of {proc.ExitCode}.");
+                        return false;
+                    }
+                }, _config.HealthCheckRetries);
             });
         }
 

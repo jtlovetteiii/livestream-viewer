@@ -1,9 +1,9 @@
 ﻿using LivestreamViewer.Config;
 using LivestreamViewer.Constants;
 using System;
-using System.IO;
+using System.Threading.Tasks;
 
-namespace LivestreamViewer
+namespace LivestreamViewer.Util
 {
     /// <summary>
     /// Generates playback commands for videos used by the livestream client.
@@ -68,10 +68,8 @@ namespace LivestreamViewer
         /// arguments for one or more types of video players.
         /// </summary>
         /// <param name="state">A livestream viewer state.</param>
-        /// <param name="videoPlayerName">Stores the derived name of the video player that the caller should invoke.</param>
-        /// <param name="useExplicitMode">Informs the caller whether to invoke the video player explicitly as an executable or implicitly from shell.</param>
         /// <returns>Arguments for a video player that will play an appropriate video for the given state.</returns>
-        public string Resolve(ViewerState state, out string videoPlayerName, out bool useExplicitMode)
+        public async Task<VideoPlayerCommand> Resolve(ViewerState state)
         {
             // FFPLAY seems to be the more-reliable video player, but
             // it performs poorly on some lower-end devices. OMXPLAYER has
@@ -82,14 +80,21 @@ namespace LivestreamViewer
             // inconsistencies in playback. Sometimes, it will start and print
             // the usual messages to the console, then hang without ever showing
             // any video.
-            videoPlayerName = _explicitModeEnabled ? FFPlayPlayerName : OmxPlayerName;
-            useExplicitMode = _explicitModeEnabled;
+            var command = new VideoPlayerCommand
+            {
+                PlayerName = _explicitModeEnabled ? FFPlayPlayerName : OmxPlayerName,
+                UseExplicitMode = _explicitModeEnabled
+            };
             switch (state)
             {
                 case ViewerState.Livestream:
-                    return _explicitModeEnabled
-                                ? GetFFPLAYArgs(_config.LivestreamUrl, _config.TestModeEnabled, false)
-                                : GetOmxplayerArgs(_config.LivestreamUrl, _config.TestModeEnabled, false);
+                    // Evaluate the current livestream URL. This is not necessary except for 
+                    // actually viewing the livestream, and may be impossible in some states.
+                    var livestreamUrl = await _config.ResolveLivestreamUrlAsync();
+                    command.PlayerArgs = _explicitModeEnabled
+                                            ? GetFFPLAYArgs(livestreamUrl, _config.TestModeEnabled, false, _config.VideoPlayerArguments)
+                                            : GetOmxplayerArgs(livestreamUrl, _config.TestModeEnabled, false, _config.VideoPlayerArguments);
+                    break;
                 case ViewerState.Unset:
                     throw new Exception($"Invalid viewer state: [{Enum.GetName(typeof(ViewerState), state)}].");
                 default:
@@ -97,15 +102,21 @@ namespace LivestreamViewer
                     // (i.e. everything other than the livestream state) use
                     // video files whose names match their state.
                     //
-                    // NOTE: Use forward slashes for greater platform compatibility.
+                    // NOTE: Use forward slashes and surround with quotes for greater platform compatibility.
                     var videoPath = $"{_config.VideoPath}/{Enum.GetName(typeof(ViewerState), state)}.{_config.VideoExtension}";
-                    return _explicitModeEnabled
-                                ? GetFFPLAYArgs(videoPath, _config.TestModeEnabled, true)
-                                : GetOmxplayerArgs(videoPath, _config.TestModeEnabled, true);
+                    if (videoPath.Contains(' ') && !videoPath.StartsWith('"'))
+                    {
+                        videoPath = $"\"{videoPath}\"";
+                    }
+                    command.PlayerArgs = _explicitModeEnabled
+                                            ? GetFFPLAYArgs(videoPath, _config.TestModeEnabled, true, _config.VideoPlayerArguments)
+                                            : GetOmxplayerArgs(videoPath, _config.TestModeEnabled, true, _config.VideoPlayerArguments);
+                    break;
             }
+            return command;
         }
 
-        private string GetFFPLAYArgs(string url, bool useTestMode, bool loop)
+        private string GetFFPLAYArgs(string url, bool useTestMode, bool loop, string additionalArgs)
         {
             // Always play in full-screen mode (fs) unless in test mode.
             // Optionally loop the video.
@@ -117,10 +128,10 @@ namespace LivestreamViewer
             {
                 ffplayArgs += " -loop 0";
             }
-            return ffplayArgs;
+            return ffplayArgs + " " + additionalArgs;
         }
 
-        private string GetOmxplayerArgs(string url, bool useTestMode, bool loop)
+        private string GetOmxplayerArgs(string url, bool useTestMode, bool loop, string additionalArgs)
         {
             // Omxplayer auto-plays in full-screen (override for test mode).
             // Optionally loop the video.
@@ -133,7 +144,7 @@ namespace LivestreamViewer
             {
                 omxArgs += $" --win 0,0,{TestModeWidth},{TestModeHeight}";
             }
-            return omxArgs;
+            return omxArgs + " " + additionalArgs;
         }
     }
 }

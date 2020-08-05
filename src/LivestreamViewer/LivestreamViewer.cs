@@ -37,17 +37,17 @@ namespace LivestreamViewer
             await Task.Factory.StartNew(async () =>
             {
                 // Start with the "off-air" video.
-                Transition(ViewerState.OffAir);
+                await Transition(ViewerState.OffAir);
 
                 // Main keep-alive portion of the thread.
                 while (!token.IsCancellationRequested)
                 {
-                    // Are we healthy?
-                    // TODO: Another way to do this is to just let the monitor run and keep a bool updated that we can read with a lock.
-                    var isStreamHealthy = await _monitor.IsLivestreamHealthyAsync(_config.LivestreamUrl, token);
+                    // Are we healthy? Make sure to re-evaluate the livestream URL in case it has changed.
+                    var livestreamUrl = await _config.ResolveLivestreamUrlAsync();
+                    var isStreamHealthy = await _monitor.IsLivestreamHealthyAsync(livestreamUrl, token);
                     if (isStreamHealthy)
                     {
-                        Transition(ViewerState.Livestream);
+                        await Transition(ViewerState.Livestream);
                     }
                     else
                     {
@@ -65,7 +65,7 @@ namespace LivestreamViewer
 
                         // Show the "offline" video if no Internet connectivity,
                         // or the "off-air" video if there is connectivity.
-                        Transition(isOnline ? ViewerState.OffAir : ViewerState.Offline);
+                        await Transition(isOnline ? ViewerState.OffAir : ViewerState.Offline);
                     }
 
                     // Wait for a period of time, respecting cancellation.
@@ -77,7 +77,7 @@ namespace LivestreamViewer
 
         }
 
-        private void Transition(ViewerState state)
+        private async Task Transition(ViewerState state)
         {
             if (_state == state && _videoProcess != null && !_videoProcess.HasExited)
             {
@@ -88,8 +88,8 @@ namespace LivestreamViewer
                 _state = state;
                 _log.Info($"Transitioning to state: {Enum.GetName(typeof(ViewerState), state)}.");
 
-                var playerArgs = _videoResolver.Resolve(state, out var playerName, out bool useExplicitMode);
-                PlayVideo(playerName, playerArgs, useExplicitMode);
+                var command = await _videoResolver.Resolve(state);
+                PlayVideo(command);
             }
         }
 
@@ -140,8 +140,8 @@ namespace LivestreamViewer
                 _log.Warn($"Failed to stop one or more processes with name {name}: {ex}");
             }
         }
-                
-        private void PlayVideo(string playerName, string playerArgs, bool useExplicitMode)
+
+        private void PlayVideo(VideoPlayerCommand command)
         {
             // TODO: How long can we defer StopVideo? We want as brief a delay as possible; FFPLAY sometimes takes a moment to start displaying the video, but I'm concerned about the risk of overlapping instances.
             // TODO: Do we need to check if the player is "on top"?
@@ -149,29 +149,34 @@ namespace LivestreamViewer
             //       We have had trouble, for instance, with OMXPLAYER running but not showing video.
             StopVideo();
             ProcessStartInfo processInfo = null;
-            if (useExplicitMode)
+            if (command.UseExplicitMode)
             {
-                _log.Debug($"Configuring {playerName} for launch in explicit executable mode.");
-                var playerPath = Directory.GetFiles(_config.VideoPlayerPath).FirstOrDefault(f => Path.GetFileName(f).Contains(playerName, StringComparison.OrdinalIgnoreCase));
-                //var playerPath = Path.Combine(_config.VideoPlayerPath, playerName.EndsWith(".exe") ? playerName : $"{playerName}.exe");
+                _log.Debug($"Configuring {command.PlayerName} for launch in explicit executable mode.");
+                var playerPath = Directory.GetFiles(_config.VideoPlayerPath).FirstOrDefault(f => Path.GetFileName(f).Contains(command.PlayerName, StringComparison.OrdinalIgnoreCase));
                 if (!File.Exists(playerPath))
                 {
-                    _log.Error($"Could not find {playerName} at {playerPath}.");
+                    _log.Error($"Could not find {command.PlayerName} at {playerPath}.");
                     return;
+                }
+
+                // Surround the player path with quotes if necessary.
+                if(playerPath.Contains(' ') && !playerPath.StartsWith('"'))
+                {
+                    playerPath = $"\"{playerPath}\"";
                 }
                 processInfo = new ProcessStartInfo
                 {
                     FileName = playerPath,
-                    Arguments = playerArgs
+                    Arguments = command.PlayerArgs
                 };
             }
             else
             {
-                _log.Debug($"Configuring {playerName} for launch in shell mode.");
+                _log.Debug($"Configuring {command.PlayerName} for launch in shell mode.");
                 processInfo = new ProcessStartInfo
                 {
                     FileName = "/bin/bash",
-                    Arguments = $"-c \"{playerName} {playerArgs}\"",
+                    Arguments = $"-c \"{command.PlayerName} {command.PlayerArgs}\"",
                     RedirectStandardOutput = true,
                     UseShellExecute = false,
                     CreateNoWindow = true
